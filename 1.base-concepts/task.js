@@ -19,11 +19,12 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     const parameterName = ['Процентная ставка', 'Начальный взнос', 'Общая стоимость'];
 
     for (let i = 0; i < parameters.length; i++) {
-      if (typeof +(parameters[i]) != 'number') {
+      if (typeof Number(parameters[i]) != 'number') {
         alert('Параметр ' + parameterName[i] + ' содержит неправильное значение ' + parameters[i] + '.');
       }
     }
   }
+
   checkType();
 
   const loanBody = +amount - Number(contribution);
