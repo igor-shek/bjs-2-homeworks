@@ -1,30 +1,40 @@
 'use strict';
 
 function solveEquation(a, b, c) {
-  let arr = [];
-
-  let D = b ** 2 - 4 * a * c;
+  const D = b ** 2 - 4 * a * c;
 
   if (D === 0) {
-    arr.push((-b + Math.sqrt(D)) / 2 * a);
+    return [(-b + Math.sqrt(D)) / 2 * a];
   } else if (D > 0) {
-    arr.push((-b + Math.sqrt(D)) / 2 * a);
-    arr.push((-b - Math.sqrt(D)) / 2 * a);
+    return [(-b + Math.sqrt(D)) / 2 * a, (-b - Math.sqrt(D)) / 2 * a];
+  } else {
+    return [];
   }
-
-  return arr;
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-  let loanBody = +amount - Number(contribution);
+  function checkType() {
+    let parameters = [percent, contribution, amount];
 
-  let creditPeriod = (date.getFullYear() - new Date().getFullYear()) * 12 + date.getMonth() - new Date().getMonth();
+    const parameterName = ['Процентная ставка', 'Начальный взнос', 'Общая стоимость'];
 
-  let monthPercent = Number(percent) / 12 / 100;
+    for (let i = 0; i < parameters.length; i++) {
+      if (typeof +(parameters[i]) != 'number') {
+        alert('Параметр ' + parameterName[i] + ' содержит неправильное значение ' + parameters[i] + '.');
+      }
+    }
+  }
+  checkType();
 
-  let paymentPerMonth = loanBody * (monthPercent + monthPercent / (((1 + monthPercent) ** creditPeriod) - 1));
+  const loanBody = +amount - Number(contribution);
 
-  let totalAmount = Number((+contribution + paymentPerMonth * creditPeriod).toFixed(2));
+  const creditPeriod = (date.getFullYear() - new Date().getFullYear()) * 12 + date.getMonth() - new Date().getMonth();
+
+  const monthPercent = Number(percent) / 12 / 100;
+
+  const paymentPerMonth = loanBody * (monthPercent + monthPercent / (((1 + monthPercent) ** creditPeriod) - 1));
+
+  const totalAmount = Number((paymentPerMonth * creditPeriod).toFixed(2));
 
   return totalAmount;
 }
