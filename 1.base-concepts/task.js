@@ -19,7 +19,7 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     const parameterName = ['Процентная ставка', 'Начальный взнос', 'Общая стоимость'];
 
     for (let i = 0; i < parameters.length; i++) {
-      if (typeof Number(parameters[i]) != 'number') {
+      if (typeof Number(parameters[i]) != 'number' || Number(parameters[i]) === NaN) {
         alert('Параметр ' + parameterName[i] + ' содержит неправильное значение ' + parameters[i] + '.');
       }
     }
