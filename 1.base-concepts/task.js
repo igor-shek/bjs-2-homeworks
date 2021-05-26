@@ -13,29 +13,25 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-  function checkType() {
-    let parameters = [percent, contribution, amount];
+  const parameterName = ['Процентная ставка', 'Начальный взнос', 'Общая стоимость'];
 
-    const parameterName = ['Процентная ставка', 'Начальный взнос', 'Общая стоимость'];
+  if (isNaN(percent) === true || percent === '' || percent === ' ') {
+    return `Параметр "${parameterName[0]}" содержит неправильное значение "${percent}".`;
+  } else if (isNaN(contribution) === true || contribution === '' || contribution === ' ') {
+    return `Параметр "${parameterName[1]}" содержит неправильное значение "${contribution}".`;
+  } else if (isNaN(amount) === true || amount === '' || amount === ' ') {
+    return `Параметр "${parameterName[2]}" содержит неправильное значение "${amount}".`;
+  } else {
+    const loanBody = +amount - Number(contribution);
 
-    for (let i = 0; i < parameters.length; i++) {
-      if (Number.isNaN(parameters[i]) === true) {
-        alert('Параметр ' + parameterName[i] + ' содержит неправильное значение ' + parameters[i] + '.');
-      }
-    }
+    const creditPeriod = (date.getFullYear() - new Date().getFullYear()) * 12 + date.getMonth() - new Date().getMonth();
+
+    const monthPercent = Number(percent) / 12 / 100;
+
+    const paymentPerMonth = loanBody * (monthPercent + monthPercent / (((1 + monthPercent) ** creditPeriod) - 1));
+
+    const totalAmount = Number((paymentPerMonth * creditPeriod).toFixed(2));
+
+    return totalAmount;
   }
-
-  checkType();
-
-  const loanBody = +amount - Number(contribution);
-
-  const creditPeriod = (date.getFullYear() - new Date().getFullYear()) * 12 + date.getMonth() - new Date().getMonth();
-
-  const monthPercent = Number(percent) / 12 / 100;
-
-  const paymentPerMonth = loanBody * (monthPercent + monthPercent / (((1 + monthPercent) ** creditPeriod) - 1));
-
-  const totalAmount = Number((paymentPerMonth * creditPeriod).toFixed(2));
-
-  return totalAmount;
 }
