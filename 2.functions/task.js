@@ -8,16 +8,13 @@ function getArrayParams(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] < min) {
       min = arr[i];
-      console.log(`min = ${min}`);
     }
 
     if (arr[i] > max) {
       max = arr[i];
-      console.log(`max = ${max}`);
     }
 
     sum += arr[i];
-    console.log(`sum = ${sum}`);
   }
 
   avg = (sum / arr.length).toFixed(2);
