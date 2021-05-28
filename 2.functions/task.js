@@ -24,18 +24,23 @@ function getArrayParams(arr) {
 
 // Задание 2
 function worker(arr) {
-  let sum;
+  let sum = arr.reduce((acc, item) => {
+    return acc + item;
+  }, 0);
 
-  // Ваш код
-  ß
   return sum;
 }
 
 function makeWork(arrOfArr, func) {
-  let max
+  let max = -1000000000000;
 
-  // Ваш кода
-  // for ...
+  for (let i = 0; i < arrOfArr.length; i++) {
+    let sumOfArrInside = func(arrOfArr[i]);
+
+    if (sumOfArrInside > max) {
+      max = sumOfArrInside;
+    }
+  }
 
   return max
 }
