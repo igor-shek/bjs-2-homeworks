@@ -1,5 +1,5 @@
 function compareArrays(arr1, arr2) {
-  let result;
+  let result = true;
 
   // Ваш код
 
