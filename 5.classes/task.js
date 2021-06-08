@@ -47,7 +47,6 @@ class Book extends PrintEditionItem {
 		super(name, releaseDate, pagesCount, state);
 
 		this.author = author;
-
 		this.type = type;
 	}
 }
@@ -57,7 +56,6 @@ class NovelBook extends PrintEditionItem {
 		super(name, releaseDate, pagesCount, state);
 
 		this.author = author;
-
 		this.type = type;
 	}
 }
@@ -67,7 +65,6 @@ class FantasticBook extends PrintEditionItem {
 		super(name, releaseDate, pagesCount, state);
 
 		this.author = author;
-
 		this.type = type;
 	}
 }
@@ -77,7 +74,6 @@ class DetectiveBook extends PrintEditionItem {
 		super(name, releaseDate, pagesCount, state);
 
 		this.author = author;
-
 		this.type = type;
 	}
 }
@@ -95,6 +91,28 @@ class Library {
 	}
 
 	findBookBy(type, value) {
+		for (let i = 0; i < this.books.length; i++) {
+			for (const prop in this.books[i]) {
+				if (prop === type && this.books[i][prop] === value) {
+					return this.books[i];
+				}
+			}
+		}
+		return null;
+	}
 
+	giveBookByName(bookName) {
+		for (const printItem in this.books) {
+			if (this.books[printItem].name === bookName) {
+				const foundPrintItem = [];
+
+				foundPrintItem.push(this.books[printItem]);
+
+				this.books.splice(printItem);
+
+				return foundPrintItem[0];
+			}
+		}
+		return null;
 	}
 }
