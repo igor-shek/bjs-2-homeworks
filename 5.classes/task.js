@@ -108,7 +108,7 @@ class Library {
 
 				foundPrintItem.push(this.books[printItem]);
 
-				this.books.splice(printItem);
+				this.books.splice(printItem, 1);
 
 				return foundPrintItem[0];
 			}
